@@ -33,7 +33,7 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 2. **Actualizar la cadena de conexión** en `BlizzardApp\BlizzardApp\Logic\Func.cs -> Conectar_BD()`:
 
 ```csharp
-    private static string connectionString = "server=localhost;database=catalogovideojogos;user=TU_USUARIO;password=TU_PASSWORD";
+    string datos_conexion = "server=localhost;database=catalogovideojogos;user=TU_USUARIO;password=TU_PASSWORD";
 ```
 
 ### 🔹 4. Ejecutar el Proyecto
