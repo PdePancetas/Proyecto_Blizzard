@@ -16,9 +16,9 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 
 ### 🔹 1. Requisitos Previos
 
-- Tener instalado **.NET Framework 4.8 o superior**. [Instala aquí(https://dotnet.microsoft.com/es-es/download)]
-- Servidor de bases de datos [**MySQL**(https://dev.mysql.com/downloads/workbench/)].
-- **Visual Studio** con soporte para Windows Forms.
+- Tener instalado **.NET Framework 4.8 o superior**. [Instávlalo aquí](https://dotnet.microsoft.com/es-es/download)
+- Servidor de bases de datos [**MySQL**](https://dev.mysql.com/downloads/workbench/).
+- **Visual Studio** con soporte para Windows Forms. [Instálalo aquí](https://visualstudio.microsoft.com/es/downloads/)
 
 ### 🔹 2. Clonar el Repositorio
 
