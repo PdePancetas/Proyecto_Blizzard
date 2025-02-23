@@ -43,7 +43,6 @@ namespace BlizzardApp.Forms
         {
             using (MySqlConnection connection = Func.Conectar_BD())
             {
-                // Sentencia SQL para insertar en la tabla relacional
                 
                 string checkQuery = "SELECT COUNT(*) FROM videojogos WHERE id = @idJogo";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, connection))
@@ -75,7 +74,6 @@ namespace BlizzardApp.Forms
                     }
                     catch (Exception ex)
                     {
-                        // Manejo de errores (puedes personalizarlo)
                         Console.WriteLine($"Error al asociar juego con usuario: {ex.Message}");
                         
                     }
@@ -87,19 +85,15 @@ namespace BlizzardApp.Forms
 
         public void RecargarCesta()
         {
-            // Limpiar el TableLayoutPanel antes de cargar los nuevos videojuegos
             try
             {
-                FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0]; // Obtener el TableLayoutPanel
+                FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0];
                 flowLayoutPanel.Controls.Clear();
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-                 // Limpiar los controles actuales
-
-            // Llamar a CargarVideojuegos para llenar el catalogo
             CargarVideojuegos();
         }
 
@@ -135,7 +129,7 @@ namespace BlizzardApp.Forms
                 {
                     if (!reader.HasRows)
                     {
-                        MostrarMensajeSinVideojuegos(); // Si no hay videojuegos, mostrar mensaje
+                        MostrarMensajeSinVideojuegos();
                         return;
                     }
 
@@ -145,7 +139,6 @@ namespace BlizzardApp.Forms
                         decimal precio_original = Convert.ToDecimal(reader["precio_original"]);
                         byte[] imagenBytes = reader["img_src"] as byte[];
 
-                        // Agregar el videojuego al catálogo
                         AgregarVideojuego(titulo, precio_original, imagenBytes);
                     }
                 }
@@ -155,17 +148,10 @@ namespace BlizzardApp.Forms
 
         private void AgregarVideojuego(string titulo, decimal precio_original, byte[] imagenBytes)
         {
-            // Crear una nueva instancia del VideojuegoUserControl
+            
             VideojuegoUserControl videojuegoControl = new VideojuegoUserControl(titulo, precio_original, imagenBytes);
-
-            // Obtener el TableLayoutPanel
-            FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0]; // Suponiendo que es el primer control
-
-            // Configurar el 
-
-            // Añadir el VideojuegoUserControl al TableLayoutPanel
+            FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0];
             flowLayoutPanel.Controls.Add(videojuegoControl);
-
         }
 
         public void EliminarDeCesta(string juego)
@@ -223,11 +209,11 @@ namespace BlizzardApp.Forms
             using (MySqlConnection connection = Func.Conectar_BD())
             {
                 connection.Open();
-                MySqlTransaction transaction = connection.BeginTransaction(); // Iniciar transacción
+                MySqlTransaction transaction = connection.BeginTransaction(); 
 
                 try
                 {
-                    // Insertar en jogosComprados los juegos de la cesta del usuario
+                    
                     string insertQuery = @"
                     INSERT INTO jogosComprados (idUsuario, idJogo)
                     SELECT idUsuario, idJogo 
@@ -241,7 +227,7 @@ namespace BlizzardApp.Forms
                         Console.WriteLine($"{juegosComprados} juegos comprados.");
                     }
 
-                    // Eliminar los juegos comprados de la cesta
+                    
                     string deleteQuery = "DELETE FROM cestajogos_usuario WHERE idUsuario = @idUsuario";
 
                     using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, connection, transaction))
@@ -250,15 +236,15 @@ namespace BlizzardApp.Forms
                         deleteCmd.ExecuteNonQuery();
                     }
 
-                    transaction.Commit(); // Confirmar transacción
+                    transaction.Commit(); 
 
-                    // Recargar la cesta visualmente
+                    
                     RecargarCesta();
                     Home.biblioForm.CargarBiblioteca();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); // Revertir cambios en caso de error
+                    transaction.Rollback(); 
                     Console.WriteLine($"Error al comprar juegos: {ex.Message}");
                 }
             }

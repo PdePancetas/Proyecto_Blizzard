@@ -24,11 +24,11 @@ namespace BlizzardApp.Forms
 
         public void CargarBiblioteca()
         {
-            // Limpiar el catálogo antes de recargar los juegos
+            
             FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0];
             flowLayoutPanel.Controls.Clear();
 
-            // Consulta SQL para obtener los juegos comprados desde jogosComprados
+            
             string query = @"
             SELECT v.*
             FROM jogosComprados jc
@@ -46,7 +46,7 @@ namespace BlizzardApp.Forms
                     {
                         if (!reader.HasRows)
                         {
-                            MostrarMensajeSinJuegos(); // Muestra un mensaje si la biblioteca está vacía
+                            MostrarMensajeSinJuegos(); 
                             return;
                         }
 
@@ -56,7 +56,7 @@ namespace BlizzardApp.Forms
                             decimal precio = Convert.ToDecimal(reader["precio_original"]);
                             byte[] imagenBytes = reader["img_src"] as byte[];
 
-                            // Agregar cada juego al catálogo de la biblioteca
+                            
                             AgregarJuegoBiblioteca(titulo, precio, imagenBytes);
                         }
                     }
@@ -64,8 +64,6 @@ namespace BlizzardApp.Forms
             }
         }
 
-
-        // Método para mostrar un mensaje si la biblioteca está vacía
         private void MostrarMensajeSinJuegos()
         {
             Label lblMensaje = new Label();
@@ -78,13 +76,9 @@ namespace BlizzardApp.Forms
             flowLayoutPanel.Controls.Add(lblMensaje);
         }
 
-        // Método para agregar los juegos a la biblioteca
         private void AgregarJuegoBiblioteca(string titulo, decimal precio, byte[] imagenBytes)
         {
-            // Crear un nuevo control de videojuego
             VideojuegoUserControl videojuegoControl = new VideojuegoUserControl(titulo, precio, imagenBytes);
-
-            // Agregarlo al FlowLayoutPanel
             FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.catalogo.Controls[0];
             flowLayoutPanel.Controls.Add(videojuegoControl);
         }

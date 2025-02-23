@@ -33,7 +33,7 @@ namespace BlizzardApp
             HabilitarCampos(false);
         }
 
-        // Método para cargar los datos del juego
+       
         private void CargarDetallesJuego()
         {
             string query = "SELECT * FROM videojogos WHERE titulo = @titulo";
@@ -49,7 +49,7 @@ namespace BlizzardApp
                     {
                         if (reader.Read())
                         {
-                            // Manejo de NULLS para cada campo
+                            
                             txtTitulo.Text = reader["titulo"] != DBNull.Value ? reader["titulo"].ToString() : "Sin título";
                             txtDescripcion.Text = reader["descripcion"] != DBNull.Value ? reader["descripcion"].ToString() : "Sin descripción";
                             txtGenero.Text = reader["genero"] != DBNull.Value ? reader["genero"].ToString() : "";
@@ -63,7 +63,7 @@ namespace BlizzardApp
                             cmbEstado.SelectedItem = reader["estado"] != DBNull.Value ? reader["estado"].ToString() : "Desconocido";
 
 
-                            // Cargar imagen si existe
+                            
                             if (reader["img_src"] != DBNull.Value)
                             {
                                 byte[] imagenBytes = (byte[])reader["img_src"];
@@ -89,7 +89,7 @@ namespace BlizzardApp
 
         private void VerificarEstadoCompra(int idJuego)
         {
-            // Consulta para verificar si el usuario ya compró el juego
+            
             string query = "SELECT COUNT(*) FROM jogosComprados WHERE idUsuario = @idUsuario AND idJogo = @idJogo";
 
             using (MySqlConnection connection = Func.Conectar_BD())
@@ -102,7 +102,7 @@ namespace BlizzardApp
                     connection.Open();
                     int cantidad = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    // Si el juego ya fue comprado, desactivar botones
+                    
                     if (cantidad > 0)
                     {
                         btnAddCesta.Enabled = false;
@@ -115,10 +115,10 @@ namespace BlizzardApp
 
 
 
-        // Método para habilitar o deshabilitar los campos
+        
         private void HabilitarCampos(bool habilitar)
         {
-            txtTitulo.ReadOnly = true; // El título no debería poder cambiarse
+            txtTitulo.ReadOnly = true; 
             txtDescripcion.ReadOnly = !habilitar;
             txtGenero.ReadOnly = !habilitar;
             txtDesarrollador.ReadOnly = !habilitar;
@@ -133,13 +133,13 @@ namespace BlizzardApp
             btnCancelar.Enabled = habilitar;
         }
 
-        // Botón para habilitar la edición
+        
         private void btnEditar_Click(object sender, EventArgs e)
         {
             HabilitarCampos(true);
         }
 
-        // Botón para guardar los cambios en la base de datos
+        
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string query = @"UPDATE videojogos 
@@ -188,7 +188,7 @@ namespace BlizzardApp
         }
 
 
-        // Botón para cancelar y cerrar el formulario
+        
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             CargarDetallesJuego();
@@ -199,7 +199,7 @@ namespace BlizzardApp
         {
             if (Home.cestaForm == null || Home.cestaForm.IsDisposed)
             {
-                Home.cestaForm = new CestaForm(); // Crear una nueva instancia
+                Home.cestaForm = new CestaForm(); 
             }
             Home.cestaForm.Show();
             Home.cestaForm.AddJuego(tituloJuego);
@@ -207,10 +207,10 @@ namespace BlizzardApp
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            string juegoSeleccionado = txtTitulo.Text; // Suponiendo que hay un TextBox con el nombre del juego
+            string juegoSeleccionado = txtTitulo.Text;
             if (Home.cestaForm == null || Home.cestaForm.IsDisposed)
             {
-                Home.cestaForm = new CestaForm(); // Crear una nueva instancia
+                Home.cestaForm = new CestaForm();
             }
             Home.cestaForm.Show();
             Home.cestaForm.EliminarDeCesta(juegoSeleccionado);
