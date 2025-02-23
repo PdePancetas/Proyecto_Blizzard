@@ -55,7 +55,7 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 1. Acceder con una cuenta de **admin**.
 2. Administrar videojuegos: **añadir, editar o eliminar** juegos.
 3. Gestionar usuarios y pedidos.
-4. +Opciones de Usuario normal
+4. + Todas las opciones de un Usuario normal
 
 ---
 
