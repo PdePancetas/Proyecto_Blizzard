@@ -7,7 +7,7 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 - 📜 **Catálogo de Videojuegos**: Explora una lista de juegos disponibles.
 - 🛒 **Carrito de Compras**: Agrega juegos al carrito y cómpralos fácilmente.
 - 🎮 **Biblioteca Personal**: Accede a los juegos comprados en una sección separada.
-- 👤 **Sistema de Usuarios**: Registro e inicio de sesión con autenticación.
+- 👤 **Sistema de Usuarios**: Registro e inicio de sesión.
 - 🔧 **Panel de Administración**: Permite gestionar juegos y usuarios (solo para admins).
 
 ---
@@ -23,17 +23,17 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 ### 🔹 2. Clonar el Repositorio
 
 ```sh
-    git clone https://github.com/tu-usuario/BlizzardApp.git
-    cd BlizzardApp
+    git clone https://github.com/PdePancetas/Proyecto_Blizzard.git
+    cd Proyecto_Blizzard
 ```
 
 ### 🔹 3. Configurar la Base de Datos
 
 1. **Crear la base de datos en MySQL** ejecutando el script en `database.sql`.
-2. **Actualizar la cadena de conexión** en `Func.cs`:
+2. **Actualizar la cadena de conexión** en `BlizzardApp\BlizzardApp\Logic\Func.cs -> Conectar_BD()`:
 
 ```csharp
-    private static string connectionString = "server=TU_SERVIDOR;database=TU_BD;user=TU_USUARIO;password=TU_PASSWORD";
+    private static string connectionString = "server=localhost;database=catalogovideojogos;user=TU_USUARIO;password=TU_PASSWORD";
 ```
 
 ### 🔹 4. Ejecutar el Proyecto
@@ -55,6 +55,7 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 1. Acceder con una cuenta de **admin**.
 2. Administrar videojuegos: **añadir, editar o eliminar** juegos.
 3. Gestionar usuarios y pedidos.
+4. +Opciones de Usuario normal
 
 ---
 
@@ -71,5 +72,5 @@ BlizzardApp es una aplicación de escritorio que permite a los usuarios explorar
 ## 📄 Licencia
 Este proyecto es de código abierto y se distribuye bajo la **MIT License**.
 
-📧 Para dudas o mejoras, contáctame en [tu email o GitHub].
+📧 Para dudas o mejoras, contáctame en [blancomiguel.bj@gmail.com o [github.com/PdePancetas](https://github.com/PdePancetas/)].
 
