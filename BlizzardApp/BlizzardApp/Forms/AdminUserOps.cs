@@ -226,7 +226,7 @@ namespace BlizzardApp
 
             if (!found)
             {
-                MessageBox.Show("No se encontró ningún usuario con el ID especificado.");
+                MessageBox.Show("No se encontró ningún usuario con el nombre especificado.");
             }
         }
 
